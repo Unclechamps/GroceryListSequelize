@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Grocery List</title>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1 id="title">Shopping List</h1>
+
+    <h4>Add Store</h4>
+    <form class="forminput" action='/shoppinglist' method='post'>
+      <label for="name">Name: </label>
+      <input class="textinput" type="text" name="name" placeholder="e.g. Kroger, HEB...">
+
+      <label for="street">Street: </label>
+      <input class="textinput" type="text" name="street" placeholder="e.g. Richmond St...">
+
+      <label for="city">City: </label>
+      <input class="textinput" type="text" name="city" placeholder="e.g. Houston...">
+
+      <label for="state">State: </label>
+      <input class="textinput" type="text" name="state" placeholder="e.g. TX...">
+      <input class="submitBtn" type="submit" />
+    </form>
+
+    <h2>Stores</h2>
+    <ul class="storelist">
+      {{#storeList}}
+      <div class="storeDetail">
+          <li>{{name}} at {{street}}, {{city}}, {{state}}</li>
+          <a href="/groceryItems/{{shopping_list_id}}"><i class="fas fa-plus" alt="Add Item"></i></a>
+          <form action='/deleteList' method='post'>
+            <input type="hidden" name="delete" value={{id}}>
+            <input type="submit" value="Delete">
+          </form>
+      </div>
+      {{/storeList}}
+    </ul>
+
+
+  </body>
+</html>

@@ -6,8 +6,12 @@ module.exports = (sequelize, DataTypes) => {
     city: DataTypes.STRING,
     state: DataTypes.STRING
   }, {});
+
+
   grocerylist.associate = function(models) {
     // associations can be defined here
+    grocerylist.hasMany(models.GroceryItem, { as : 'groceryitem', foreignKey: 'shoppinglist_id' })
+
   };
   return grocerylist;
 };

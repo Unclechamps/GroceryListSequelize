@@ -31,7 +31,7 @@
       {{#storeList}}
       <div class="storeDetail">
           <li>{{name}} at {{street}}, {{city}}, {{state}}</li>
-          <a href="/groceryItems/{{shopping_list_id}}"><i class="fas fa-plus" alt="Add Item"></i></a>
+          <a href="/groceryItems/{{id}}"><i class="fas fa-plus" alt="Add Item"></i></a>
           <form action='/deleteList' method='post'>
             <input type="hidden" name="delete" value={{id}}>
             <input type="submit" value="Delete">

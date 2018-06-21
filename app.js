@@ -32,7 +32,8 @@ app.post('/shoppinglist',function(req,res){
     name : req.body.name,
     street : req.body.street,
     city : req.body.city,
-    state : req.body.state
+    state : req.body.state,
+    id : req.body.id
   }
 
   models.grocerylist.create(store).then(function(){
@@ -58,7 +59,53 @@ app.post('/deleteList', function(req,res) {
   })
 })
 
+// MOVE TO ADD ITEMS PAGE //
 
+app.get('/groceryitems/:storeID', function(req,res){
+
+  let storeId = req.params.storeID
+
+  models.GroceryItem.findAll({
+    where: {
+      shoppinglist_id : storeId
+    }
+  }).then(function(list) {
+    res.render('groceryitem', {groceryList : list, store_id : storeId})
+})
+})
+
+
+// POST ITEM //
+
+app.post('/individualItems',function(req,res){
+
+    let item = {
+      shoppinglist_id : req.body.store_id,
+      item_name : req.body.groceryItem,
+      quantity : req.body.quantity,
+      price : req.body.price
+
+    }
+
+  models.GroceryItem.create(item).then(function(){
+    let storeID = req.body.store_id
+    res.redirect('/groceryitems/'+storeID+'')
+  })
+})
+
+// DELETING ITEM //
+
+app.post('/deleteItem', function(req,res) {
+  models.GroceryItem.destroy({
+
+    where: {
+      id : req.body.delete
+    }
+    }).then(function(){
+      let storeID = req.body.store
+      res.redirect('/groceryitems/'+storeID+'')
+  })
+})
 
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))

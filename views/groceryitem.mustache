@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Grocery List</title>
+    <link href="/styles.css" rel="stylesheet" type="text/css"></link>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>{{name}}</h1>
+    <h4>Add Items</h4>
+    <form action='/individualItems' method='post' class="forminput">
+      <input type="hidden" name="store_id" value={{store_id}}>
+
+      <label for="groceryItem">Item: </label>
+      <input class="textinput" type="text" name="groceryItem" placeholder="e.g milk, cereal...">
+
+      <label for="quantity">Quantity: </label>
+      <input class="textinput" type="text" name="quantity" placeholder="e.g. 3...">
+
+      <label for="price">Price: </label>
+      <input class="textinput" type="text" name="price" placeholder="e.g. $5.00...">
+      <input class="submitBtn" type="submit" />
+    </form>
+
+      <h2>Grocery Items</h2>
+          <ul class="itemsList">
+            {{#groceryList}}
+            <div class="itemsDetail">
+              <li>Item: {{item_name}}, Qty: {{quantity}}, Price: ${{price}}</li>
+              <form action='/deleteItem' method='post'>
+                <input type="hidden" name="store" value={{store_id}}>
+                <input type="hidden" name="delete" value={{id}}>
+                <input type="submit" value="Delete">
+              </form>
+            </div>
+            {{/groceryList}}
+          </ul>
+
+
+
+  </body>
+</html>

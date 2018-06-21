@@ -37,6 +37,7 @@ h2 {
   text-align: center;
 }
 
+/* STORE LIST */
 .storelist {
   display: flex;
   flex-direction: column;
@@ -58,6 +59,29 @@ h2 {
   color: white;
   margin: auto 15px;
 
+}
+
+/* GROCERY LIST */
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin: auto;
+  padding: 0;
+  list-style: initial;
+}
+
+.itemsDetail {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.itemsDetail li {
+  display: flex;
+  margin-right: 15px;
 }
 
 @media only screen and (max-width: 1080px) {

@@ -61,6 +61,11 @@ h2 {
 
 }
 
+hr {
+    margin: 20px auto;
+    width: 75%;
+}
+
 /* GROCERY LIST */
 
 .itemsList {

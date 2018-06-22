@@ -90,7 +90,8 @@ app.post('/individualItems',function(req,res){
 
   models.GroceryItem.create(item).then(function(){
     let storeID = req.body.store_id
-    res.redirect('/groceryitems/'+storeID+'')
+    let name = req.body.name
+    res.redirect('/groceryitems/'+name+'/'+storeID+'')
   })
 })
 
@@ -104,7 +105,8 @@ app.post('/deleteItem', function(req,res) {
     }
     }).then(function(){
       let storeID = req.body.store
-      res.redirect('/groceryitems/'+storeID+'')
+      let name = req.body.storeName
+      res.redirect('/groceryitems/'+name+'/'+storeID+'')
   })
 })
 

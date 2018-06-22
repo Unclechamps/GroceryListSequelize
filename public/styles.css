@@ -86,16 +86,32 @@ hr {
   margin: auto;
   padding: 0;
   list-style: initial;
-}
-
-.itemsDetail {
-  display: flex;
-  margin-bottom: 15px;
+  text-align: center;
 }
 
 .itemsDetail li {
   display: flex;
   margin-right: 15px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.itemsList table,
+.itemsList th,
+.itemsList td,
+.itemsList tr {
+  border: 1px solid white;
+  width: 25%;
+}
+
+.itemsList th {
+  font-size: 1.5em;
+}
+
+.formDelete {
+  border-style: none;
 }
 
 @media only screen and (max-width: 1080px) {

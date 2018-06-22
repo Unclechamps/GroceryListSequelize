@@ -28,18 +28,20 @@
     <hr>
 
     <h2>Stores</h2>
-    <ul class="storelist">
+    <div class="storelist">
       {{#storeList}}
       <div class="storeDetail">
-          <li>{{name}} at {{street}}, {{city}}, {{state}}</li>
-          <a href="/groceryItems/{{id}}"><i class="fas fa-plus" alt="Add Item"></i></a>
-          <form action='/deleteList' method='post'>
+          <h3><b>{{name}}</b></h3>
+          <p>{{street}}, {{city}}, {{state}}</p>
+          <a href="/groceryItems/{{name}}/{{id}}">Go to Store</a>
+          <form class="deleteBtn"  action='/deleteList' method='post'>
             <input type="hidden" name="delete" value={{id}}>
             <input type="submit" value="Delete">
           </form>
+          <hr>
       </div>
       {{/storeList}}
-    </ul>
+    </div>
 
 
   </body>

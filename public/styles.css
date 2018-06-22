@@ -41,8 +41,8 @@ h2 {
 .storelist {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
   width: 50%;
   margin: auto;
   padding: 0;
@@ -51,19 +51,28 @@ h2 {
 
 .storeDetail {
   display: flex;
+  flex-direction: column;
   margin-bottom: 15px;
 }
 
+.storeDetail p, .storeDetail h3 {
+  margin: 5px 5px;
+}
+
 .storeDetail a {
-  text-decoration: none;
+  text-decoration: underline;
   color: white;
-  margin: auto 15px;
+  margin: 15px 5px;
 
 }
 
 hr {
     margin: 20px auto;
-    width: 75%;
+    width: 100%;
+}
+
+.deleteBtn {
+  margin-left: 5px;
 }
 
 /* GROCERY LIST */

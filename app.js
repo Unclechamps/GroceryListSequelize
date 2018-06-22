@@ -61,8 +61,9 @@ app.post('/deleteList', function(req,res) {
 
 // MOVE TO ADD ITEMS PAGE //
 
-app.get('/groceryitems/:storeID', function(req,res){
+app.get('/groceryitems/:storeName/:storeID', function(req,res){
 
+  let storeName = req.params.storeName
   let storeId = req.params.storeID
 
   models.GroceryItem.findAll({
@@ -70,7 +71,7 @@ app.get('/groceryitems/:storeID', function(req,res){
       shoppinglist_id : storeId
     }
   }).then(function(list) {
-    res.render('groceryitem', {groceryList : list, store_id : storeId})
+    res.render('groceryitem', {groceryList : list, store_id : storeId, name : storeName})
 })
 })
 

@@ -14,3 +14,10 @@ module.exports = (sequelize, DataTypes) => {
   };
   return GroceryItem;
 };
+
+
+CartTable.associate = function(models) {
+  CartTable.belongsTo(models.products, {as : 'products', foreignKey : 'id'})
+};
+
+return CartTable;

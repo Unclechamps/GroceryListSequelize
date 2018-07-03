@@ -110,5 +110,58 @@ app.post('/deleteItem', function(req,res) {
   })
 })
 
+//MODIFY ITEM//
+
+app.post('/modify', function(req,res) {
+  let quantity = req.body.quantity
+  models.GroceryItem.update({quantity : (parseInt(quantity) + parseInt(req.body.amtModify))},
+
+{
+  where: {
+    id : req.body.modifyQty
+  }
+}).then(function(){
+  let storeID = req.body.store
+  let name = req.body.storeName
+  res.redirect('/groceryitems/'+name+'/'+storeID+'')
+  })
+})
+
+// ADD TO CART //
+
+app.post('/addToCart', function(req,res) {
+
+  let cartItem = {
+    item_name : req.body.item_name,
+    quantity : req.body.qtyToCart,
+    price : req.body.price,
+    totalAmt : (parseInt(req.body.qtyToCart) * parseInt(req.body.price))
+  }
+
+  models.GroceryItem.findOne({ where : {id : req.body.modifyQty}}).then(function(itemInventory){
+    let itemQuantity = itemInventory.quantity
+    if(req.body.qtyToCart > itemQuantity) {
+      // error
+    } else {
+      models.Cart.create(cartItem).then(function(){
+        let invQuantity = req.body.quantity
+        models.GroceryItem.update({quantity : (parseInt(invQuantity) - parseInt(req.body.qtyToCart))},
+      {
+        where: {
+          id : req.body.modifyQty
+        }
+      }).then(function() {
+        res.redirect('/cart')
+      })
+    })}
+  })
+})
+
+
+app.get('/cart', function(req,res){
+  models.Cart.findAll().then(function(cartItems) {
+    res.render('cart', {cart : cartItems})
+  })
+})
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))

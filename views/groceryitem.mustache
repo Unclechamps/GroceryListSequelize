@@ -35,6 +35,7 @@
                 <th>Price</th>
               </tr>
               {{#groceryList}}
+              {{id}}
               <tr>
               <td>{{item_name}}</td>
               <td>{{quantity}}</td>
@@ -44,6 +45,24 @@
                 <input type="hidden" name="storeName" value={{name}}>
                 <input type="hidden" name="delete" value={{id}}>
                 <input type="submit" value="Delete">
+              </form></td>
+              <td><form action='/modify' method="post">
+                <input type="hidden" name="store" value={{store_id}}>
+                <input type="hidden" name="storeName" value={{name}}>
+                <input type="hidden" name="modifyQty" value={{id}}>
+                <input type="hidden" name='quantity' value={{quantity}}>
+                <input type="number" name="amtModify" placeholder="Amount to modify...">
+                <input type="submit" value="Modify">
+              </form></td>
+              <td><form action='/addToCart' method="post">
+                <input type="hidden" name="store" value={{store_id}}>
+                <input type="hidden" name="storeName" value={{name}}>
+                <input type="hidden" name="modifyQty" value={{id}}>
+                <input type="hidden" name='quantity' value={{quantity}}>
+                <input type="hidden" name='item_name' value={{item_name}}>
+                <input type="hidden" name='price' value={{price}}>
+                <input type="number" name="qtyToCart" placeholder="How many to cart">
+                <input type="submit" value="Add To Cart">
               </form></td>
               </tr>
               {{/groceryList}}
